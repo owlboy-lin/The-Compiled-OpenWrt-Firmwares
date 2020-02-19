@@ -45,7 +45,7 @@ jobs:
         cd /home/runner/openwrt
         let make_process=$(nproc)+1
         make defconfig
-        make -j${make_process} || { make tools/{upx,ucl}/compile; make -j${make_process} || rm -rf /home/runner/openwrt/dl; make target/install; make package/index; make checksum; }
+        make -j${make_process} || { rm -rf /home/runner/openwrt/dl; make target/install; make package/index; make checksum; }
     - name: Upload Config
       uses: actions/upload-artifact@v1
       with:
